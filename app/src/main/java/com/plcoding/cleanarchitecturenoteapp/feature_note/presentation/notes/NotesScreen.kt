@@ -39,7 +39,7 @@ fun NotesScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Новая заметка")
             }
         },
         scaffoldState = scaffoldState
@@ -55,7 +55,7 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your note",
+                    text = "Заметки",
                     style = MaterialTheme.typography.h4
                 )
                 IconButton(
@@ -65,7 +65,7 @@ fun NotesScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Sort,
-                        contentDescription = "Sort"
+                        contentDescription = "Упорядочить"
                     )
                 }
             }
@@ -82,6 +82,7 @@ fun NotesScreen(
                     onOrderChange = {
                         viewModel.onEvent(NotesEvent.Order(it))
                     }
+
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))

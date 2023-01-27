@@ -22,14 +22,14 @@ class AddEditNoteViewModel @Inject constructor(
 
     private val _noteTitle = mutableStateOf(
         NoteTextFieldState(
-        hint = "Enter title..."
+        hint = "Введите название..."
     )
     )
     val noteTitle: State<NoteTextFieldState> = _noteTitle
 
     private val _noteContent = mutableStateOf(
         NoteTextFieldState(
-        hint = "Enter some content"
+        hint = "Введите содержание"
     )
     )
     val noteContent: State<NoteTextFieldState> = _noteContent
@@ -106,7 +106,7 @@ class AddEditNoteViewModel @Inject constructor(
                     } catch(e: InvalidNoteException) {
                         _eventFlow.emit(
                             UiEvent.ShowSnackbar(
-                                message = e.message ?: "Couldn't save note"
+                                message = e.message ?: "Невозможно сохранить заметку"
                             )
                         )
                     }
