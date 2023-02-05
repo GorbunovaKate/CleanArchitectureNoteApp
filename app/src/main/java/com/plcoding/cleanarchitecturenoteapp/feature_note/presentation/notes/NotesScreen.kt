@@ -1,9 +1,11 @@
 package com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -21,6 +23,7 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.com
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalFoundationApi::class)
 @ExperimentalAnimationApi
 @Composable
 fun NotesScreen(
@@ -58,6 +61,7 @@ fun NotesScreen(
                     text = "Заметки",
                     style = MaterialTheme.typography.h4
                 )
+
                 IconButton(
                     onClick = {
                         viewModel.onEvent(NotesEvent.ToggleOrderSection)
@@ -86,13 +90,20 @@ fun NotesScreen(
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+
+            LazyVerticalGrid(
+                cells = GridCells.Fixed(2),
+                contentPadding = PaddingValues(start = 7.5.dp, end = 7.5.dp,bottom = 100.dp),
+                modifier = Modifier.fillMaxSize()) {
                 items(state.notes) { note ->
                     NoteItem(
                         note = note,
+
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable {
+                            .padding(horizontal = 7.dp, vertical = 6.dp)
+                            .clickable
+                            {
                                     navController.navigate(
                                     Screen.AddEditNoteScreen.route +
                                             "?noteId=${note.id}&noteColor=${note.color}"
